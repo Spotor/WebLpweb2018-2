@@ -1,0 +1,7 @@
+{
+  "eventos": [
+    { "id": 1, "sigla": "ASD", "nome": "Asd", "dataInicio": "10/11/2018", "dataTermino": "11/11/2018", "prazo": "01/10/2018", "URL": "www..."},
+    { "id": 2, "sigla": "TRE", "nome": "Tre", "dataInicio": "10/11/2018", "dataTermino": "11/11/2018", "prazo": "01/10/2018", "URL": "www..."},
+    { "id": 3, "sigla": "VDS", "nome": "Vds", "dataInicio": "10/11/2018", "dataTermino": "11/11/2018", "prazo": "01/10/2018", "URL": "www..."}
+  ]
+}

@@ -1,0 +1,59 @@
+<h2 *ngIf="evento.id && status != 'carregando'">Editar dados do evento ({{evento.id}})</h2>
+<h2 *ngIf="!evento.id">Cadastrar evento</h2>
+
+<div *ngIf="status == 'salvo'" class="alert alert-success">
+    <p><strong>Sucesso!</strong> Os dados do evento foram salvos com sucesso.</p>
+    <p>Continue usando o formulário para
+        <span *ngIf="evento.id">editar o</span>
+        <span *ngIf="!evento.id">cadastrar</span>
+        evento ou volte para a
+        <a routerLink="/cadastar/evento/"><i class="fa fa-arrow-left"></i> lista de eventos</a>.</p>
+</div>
+<div *ngIf="status == 'erro'" class="alert alert-danger">
+    <strong>Opa!</strong> Aconteceu um erro ao tentar salvar os dados. Por favor, aguarde alguns instantes e tente
+    novamente.
+</div>
+<div *ngIf="status == 'erro-conexao'" class="alert alert-danger">
+    <strong>Opa!</strong> Ocorreu um erro de conexão com o servidor. Por favor, aguarde alguns instantes e tente
+    novamente.
+</div>
+<div *ngIf="status == 'salvando'" class="alert alert-info">
+    <strong>Aguarde...</strong> salvando dados do evento.
+</div>
+<div *ngIf="status == 'carregando'" class="alert alert-info">
+    <strong>Aguarde...</strong> ajeitando as coisas para tudo funcionar direitinho.
+</div>
+<form *ngIf="status != 'erro-conexao' && status != 'carregando'" #cadastro="ngForm" (submit)="salvar()">
+    <div class="form-group">
+        <label for="sigla">Sigla</label><br>
+        <input type="text" id="sigla" name="sigla" class="form-control" [(ngModel)]="evento.sigla" required>
+    </div>
+    <div class="form-group">
+        <label for="nome">Nome</label><br>
+        <input type="text" id="nome" name="nome" class="form-control" [(ngModel)]="evento.nome" required>
+    </div>
+    <div class="form-group">
+        <label for="dataInicio">data Início</label><br>
+        <input id="dataInicio" name="dataInicio" class="form-control" [(ngModel)]="evento.dataInicio" required>
+    </div>
+    <div class="form-group">
+        <label for="dataTermino">data Fim</label><br>
+        <input id="dataTermino" name="dataTermino" class="form-control" [(ngModel)]="evento.dataTermino" required>
+    </div>
+    <div class="form-group">
+        <label for="prazo">Prazo</label><br>
+        <input id="prazo" name="prazo" class="form-control" [(ngModel)]="evento.prazo" required>
+    </div>
+    <div class="form-group">
+        <label for="URL">URL</label><br>
+        <input id="URL" name="URL" class="form-control" [(ngModel)]="evento.URL" required>
+    </div>
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary" [disabled]="!cadastro.valid || status == 'salvando'">
+            <i class="fa fa-save"></i> Salvar
+        </button>
+        <button type="reset" class="btn btn-secondary" (click)="cancelar()" [disabled]="status == 'salvando'">
+            Cancelar
+        </button>
+    </div>
+</form>
